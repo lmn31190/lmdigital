@@ -3,291 +3,431 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<!-- ARTIFACT-START -->
-<title>Valcourt Plomberie</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Plombier chauffagiste à Auterive et dans le sud toulousain : dépannage sous 2 h, chauffe-eau, chaudière, pompe à chaleur. Devis gratuit en ligne.">
+<title>Valcourt Plomberie · Plombier chauffagiste à Auterive</title>
+<meta name="description" content="Plombier chauffagiste à Auterive et dans le sud toulousain : dépannage sous 2 h, chauffe-eau, chaudière, pompe à chaleur. Prix fixe annoncé avant de venir.">
+<script>document.documentElement.classList.add('js')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
 <style>
-  /* Layout: signage-style header band, split hero with quote form above the fold, copper pipe line threading sections, sticky call bar on mobile */
+  /* Idea: Valcourt's written quote, "prix annoncé = prix payé", is the stationery the whole page is printed on:
+     the hero is the request slip, prices print on a ticket, the process on a receipt, the footer is the back of the card. */
   :root {
-    --bg: #F3F6F5;
-    --surface: #FFFFFF;
-    --ink: #13252A;
-    --muted: #4D6168;
-    --line: #D3DDDB;
-    --copper: #A8551F;
-    --copper-soft: #F4E3D6;
-    --band: #13252A;
-    --band-ink: #EAF1F0;
-    --ok: #1F7A53;
-    --font-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
-    --font-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
-    --radius: 6px;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0E1A1D; --surface: #152428; --ink: #E6EEEC; --muted: #9DB0B4; --line: #26393E;
-      --copper: #E08A4E; --copper-soft: #3A2517; --band: #08191C; --band-ink: #E6EEEC; --ok: #4CC08A;
-      color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #0E1A1D; --surface: #152428; --ink: #E6EEEC; --muted: #9DB0B4; --line: #26393E;
-    --copper: #E08A4E; --copper-soft: #3A2517; --band: #08191C; --band-ink: #E6EEEC; --ok: #4CC08A;
-    color-scheme: dark;
+    --bg: #ff7a1f;          /* copper orange ground */
+    --surface: #ff8f42;
+    --ink: #050f16;         /* blue-black */
+    --muted: #4a1f06;
+    --paper: #ffffff;
+    --tint: #edf0f2;        /* cool paper tone step for controls */
+    --night: #050f16;
+    --night-ink: #f4f6f7;
+
+    --font-display: "Young Serif", Georgia, "Times New Roman", serif;
+    --font-text: "Source Serif 4", Georgia, "Times New Roman", serif;
+
+    --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+    --step-body: clamp(1.0625rem, 1.02rem + 0.25vw, 1.25rem);
+    --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+    --step-head: clamp(2rem, 1.3rem + 3.2vw, 4rem);
+    --step-display: clamp(2.75rem, 1.2rem + 6.4vw, 5.5rem);
+
+    --margin: clamp(16px, 2.2vw, 32px);
+    --gap-section: clamp(96px, 12vw, 200px);
+    --ease-out: cubic-bezier(.2, .7, .2, 1);
+    color-scheme: light;
   }
 
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  *, *::before, *::after { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0; background: var(--bg); color: var(--ink);
-    font: 400 17px/1.6 var(--font-body);
+    font-family: var(--font-text); font-size: var(--step-body); line-height: 1.55;
+    font-variant-numeric: lining-nums;
   }
-  .wrap {
-    max-width: 1140px; margin: 0 auto;
-    padding-left: max(16px, env(safe-area-inset-left, 0px));
-    padding-right: max(16px, env(safe-area-inset-right, 0px));
-  }
-  h1, h2, h3 { font-family: var(--font-display); line-height: 1.05; margin: 0; text-wrap: balance; letter-spacing: .005em; }
-  h2 { font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 800; text-transform: uppercase; }
-  h3 { font-size: 1.45rem; font-weight: 700; }
-  p { margin: 0; }
+  img { display: block; max-width: 100%; height: auto; }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: .98; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+  p, ul, ol, dl, dd, figure { margin: 0; }
   a { color: inherit; }
-  :focus-visible { outline: 3px solid var(--copper); outline-offset: 2px; }
-  .eyebrow { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--copper); font-size: .95rem; }
+  :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+  .on-dark :focus-visible, .hero-top :focus-visible { outline-color: var(--paper); }
   .num { font-variant-numeric: tabular-nums; }
+  .frame { padding-left: max(var(--margin), env(safe-area-inset-left, 0px)); padding-right: max(var(--margin), env(safe-area-inset-right, 0px)); }
+  figcaption { font-size: var(--step-small); }
 
-  /* Concept notice */
-  .concept { background: var(--copper-soft); color: var(--ink); font-size: .85rem; }
-  .concept .wrap { padding-block: 8px; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; text-align: center; }
+  /* Buttons: one shape, square, solid */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5em;
+    font: 600 var(--step-body)/1.2 var(--font-text); text-decoration: none; border: 0; border-radius: 0; cursor: pointer;
+    padding: 14px 22px; min-height: 52px; background: var(--ink); color: var(--bg);
+    transition: transform .18s var(--ease-out), background-color .18s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:active { transform: translateY(1px) scale(.98); }
+  .btn-copper { background: var(--bg); color: var(--ink); }
+  .btn-block { width: 100%; }
+  .link { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; font-weight: 600; transition: text-underline-offset .18s; }
+  .link:hover { text-underline-offset: 7px; }
 
-  /* Header */
-  header.top { background: var(--band); color: var(--band-ink); position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; }
-  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--band); }
-  header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
-  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .logo-mark { width: 38px; height: 38px; border-radius: 50%; border: 3px solid var(--copper); display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; color: var(--copper); }
-  .logo-text { font-family: var(--font-display); font-weight: 800; font-size: 1.4rem; text-transform: uppercase; letter-spacing: .03em; line-height: 1; }
-  .logo-text small { display: block; font-weight: 600; font-size: .78rem; letter-spacing: .14em; opacity: .75; }
-  nav.links { display: flex; gap: 22px; font-weight: 600; font-size: .95rem; }
-  nav.links a { text-decoration: none; opacity: .85; }
-  nav.links a:hover { opacity: 1; color: var(--copper); }
-  .call { display: inline-flex; align-items: center; gap: 8px; background: var(--copper); color: #fff; text-decoration: none; font-weight: 700; padding: 10px 16px; border-radius: var(--radius); white-space: nowrap; }
-  .call:hover { filter: brightness(1.08); }
-  @media (max-width: 860px) { nav.links { display: none; } }
-  @media (max-width: 520px) { header.top .call { display: none; } }
+  /* ---------- Hero: the request slip on the workshop photograph ---------- */
+  .hero { position: relative; padding-bottom: var(--gap-section); overflow: clip; }
+  .hero-photo { position: absolute; inset: 0 0 auto 0; height: 100svh; overflow: clip; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
+  .hero-top {
+    position: relative; z-index: 2; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px;
+    padding-top: 28px; color: var(--paper);
+  }
+  .monogram { font-family: var(--font-display); font-size: var(--step-lead); text-decoration: none; justify-self: start; display: inline-flex; align-items: baseline; gap: .35em; }
+  .monogram b { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--bg); color: var(--ink); font-weight: 400; }
+  .hero-top nav { display: flex; gap: 28px; }
+  .hero-top nav a { text-decoration: none; font-weight: 600; }
+  .hero-top nav a:hover { text-decoration: underline; text-underline-offset: 5px; }
+  .hero-top .btn { justify-self: end; }
 
-  /* Hero */
-  .hero { padding-block: 48px 64px; }
-  .hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: start; }
-  .hero-copy { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
-  .hero h1 { font-size: clamp(2.6rem, 6vw, 4.4rem); font-weight: 800; text-transform: uppercase; }
-  .hero h1 em { font-style: normal; color: var(--copper); }
-  .lead { font-size: 1.15rem; color: var(--muted); max-width: 34em; }
-  .urgent { display: flex; align-items: center; gap: 14px; border-left: 4px solid var(--copper); background: var(--surface); padding: 14px 18px; border-radius: 0 var(--radius) var(--radius) 0; }
-  .urgent strong { font-family: var(--font-display); font-size: 1.6rem; display: block; line-height: 1.1; }
-  .pulse { width: 12px; height: 12px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 0 var(--ok); animation: pulse 2s infinite; flex-shrink: 0; }
-  @keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ok) 60%, transparent); } 70% { box-shadow: 0 0 0 12px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
-  @media (prefers-reduced-motion: reduce) { .pulse { animation: none; } }
-  .proofs { display: flex; flex-wrap: wrap; gap: 10px 22px; list-style: none; padding: 0; margin: 0; font-weight: 600; font-size: .95rem; }
-  .proofs li { display: flex; align-items: center; gap: 8px; }
-  .proofs li::before { content: ""; width: 8px; height: 8px; background: var(--copper); transform: rotate(45deg); }
+  .slip {
+    position: relative; z-index: 1; width: min(640px, 50vw); margin: 120px auto 0; background: var(--paper);
+    padding: 56px; display: flex; flex-direction: column; gap: 28px; text-align: center;
+  }
+  .slip .corner { position: absolute; width: 36px; height: 36px; border-radius: 50%; background: var(--night); }
+  .slip .tl { top: -18px; left: -18px; } .slip .tr { top: -18px; right: -18px; }
+  .slip .bl { bottom: -18px; left: -18px; background: var(--bg); } .slip .br { bottom: -18px; right: -18px; background: var(--bg); }
+  .slip h1 { font-size: var(--step-display); }
+  .slip h1 span { display: block; white-space: nowrap; }
+  .slip h1 span:first-child { transform: translateX(-6%); }
+  .slip h1 span:last-child { transform: translateX(6%); }
+  .slip .lead { font-size: var(--step-lead); line-height: 1.35; max-width: 34ch; margin-inline: auto; }
+  .details { list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px 14px; font-size: var(--step-small); font-weight: 600; }
+  .details li + li::before { content: ""; display: inline-block; width: 10px; height: 10px; background: var(--bg); transform: rotate(45deg); margin-right: 14px; vertical-align: 1px; }
+  .slip .phone { font-family: var(--font-display); font-size: var(--step-head); letter-spacing: -0.01em; text-decoration: none; line-height: 1; }
+  .slip .phone:hover { color: #b8500c; }
+  .concept { font-size: var(--step-small); background: var(--tint); padding: 10px 14px; }
 
-  /* Quote form */
-  .quote { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 18px 40px -24px rgba(19,37,42,.45); min-width: 0; }
-  .quote-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-  .steps { display: flex; gap: 6px; }
-  .steps span { width: 28px; height: 4px; border-radius: 2px; background: var(--line); }
-  .steps span.on { background: var(--copper); }
-  fieldset { border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
-  legend { font-weight: 700; margin-bottom: 4px; padding: 0; }
-  .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  /* Quote form, printed on the slip */
+  .request { text-align: left; display: flex; flex-direction: column; gap: 18px; padding-top: 36px; border-top: 6px dotted var(--bg); }
+  .request h2 { font-size: var(--step-lead); text-align: center; }
+  .progress { display: flex; gap: 6px; justify-content: center; }
+  .progress span { width: 40px; height: 6px; background: var(--tint); transition: background-color .3s; }
+  .progress span.on { background: var(--ink); }
+  fieldset { border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+  legend { font-weight: 600; padding: 0; margin-bottom: 10px; }
+  .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .choice { position: relative; }
-  .choice input { position: absolute; opacity: 0; inset: 0; }
-  .choice label { display: block; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 12px; font-weight: 600; cursor: pointer; height: 100%; font-size: .95rem; }
-  .choice label small { display: block; font-weight: 400; color: var(--muted); font-size: .82rem; }
-  .choice input:checked + label { border-color: var(--copper); background: var(--copper-soft); }
-  .choice input:focus-visible + label { outline: 3px solid var(--copper); outline-offset: 2px; }
+  .choice input { position: absolute; opacity: 0; inset: 0; margin: 0; }
+  .choice label { display: block; height: 100%; padding: 12px 14px; background: var(--tint); cursor: pointer; font-weight: 600; line-height: 1.25; transition: background-color .15s, color .15s, transform .15s; }
+  .choice label small { display: block; font-weight: 400; font-size: var(--step-small); margin-top: 2px; }
+  .choice label:hover { transform: translateY(-1px); }
+  .choice input:checked + label { background: var(--ink); color: var(--paper); }
+  .choice input:focus-visible + label { outline: 3px solid var(--ink); outline-offset: 2px; }
   .field { display: flex; flex-direction: column; gap: 4px; }
-  .field label { font-weight: 600; font-size: .92rem; }
-  .field input, .field textarea { font: inherit; padding: 11px 12px; border: 1.5px solid var(--line); border-radius: var(--radius); background: var(--bg); color: var(--ink); width: 100%; }
-  .field input:focus, .field textarea:focus { border-color: var(--copper); outline: none; }
+  .field label { font-weight: 600; font-size: var(--step-small); }
+  .field input, .field textarea, .field select {
+    font: inherit; font-size: 1.0625rem; color: var(--ink); background: var(--tint); border: 2px solid transparent; border-radius: 0; padding: 12px; width: 100%;
+  }
+  .field input:focus, .field textarea:focus, .field select:focus { outline: none; border-color: var(--ink); }
   .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .actions { display: flex; gap: 10px; justify-content: space-between; align-items: center; }
-  .btn { font: inherit; font-weight: 700; border: 0; border-radius: var(--radius); padding: 12px 18px; cursor: pointer; }
-  .btn-primary { background: var(--copper); color: #fff; flex: 1; }
-  .btn-ghost { background: transparent; color: var(--muted); }
-  .form-note { font-size: .82rem; color: var(--muted); }
-  .error { color: var(--copper); font-size: .88rem; font-weight: 600; min-height: 1.2em; }
-  .done { text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center; padding-block: 20px; }
-  .done .tick { width: 54px; height: 54px; border-radius: 50%; background: var(--ok); color: #fff; display: grid; place-items: center; font-size: 1.8rem; }
-  @media (max-width: 900px) { .hero .wrap { grid-template-columns: 1fr; } }
-  @media (max-width: 420px) { .choices, .row2 { grid-template-columns: 1fr; } }
+  .actions { display: flex; gap: 10px; align-items: center; }
+  .actions .btn-primary { flex: 1; }
+  .btn-back { background: transparent; border: 0; font: 600 var(--step-body) var(--font-text); color: var(--ink); cursor: pointer; padding: 12px 8px; }
+  .error { color: #9a3a00; font-weight: 600; min-height: 1.5em; font-size: var(--step-small); }
+  .note { font-size: var(--step-small); }
+  .done { text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center; padding-block: 16px; }
+  .done strong { font-family: var(--font-display); font-weight: 400; font-size: var(--step-lead); }
 
-  /* Sections */
-  section.block { padding-block: 72px; }
-  .section-head { display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; max-width: 46em; }
-  .section-head p { color: var(--muted); }
+  /* ---------- Services: stacking sheets ---------- */
+  .services { padding-top: 0; }
+  .services > h2 { font-size: var(--step-head); padding-bottom: 48px; max-width: 14ch; }
+  .sheets { position: relative; }
+  .sheet {
+    position: sticky; min-height: 86svh; display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: 72px 1fr;
+    column-gap: 24px;
+  }
+  .sheet:nth-child(1) { top: 0; } .sheet:nth-child(2) { top: 72px; } .sheet:nth-child(3) { top: 144px; } .sheet:nth-child(4) { top: 216px; } .sheet:nth-child(5) { top: 288px; }
+  .sheet.paper { background: var(--paper); color: var(--ink); }
+  .sheet.night { background: var(--night); color: var(--night-ink); }
+  .sheet.copper { background: var(--surface); color: var(--ink); }
+  .sheet h3 { grid-column: 1 / 7; grid-row: 1; align-self: center; font-size: var(--step-lead); padding-left: var(--margin); }
+  .sheet .text { grid-column: 1 / 6; grid-row: 2; align-self: center; padding: 0 0 72px var(--margin); display: flex; flex-direction: column; gap: 18px; max-width: 40ch; }
+  .sheet .price { font-weight: 600; font-size: var(--step-body); }
+  .sheet ul { padding-left: 1.1em; display: flex; flex-direction: column; gap: 4px; }
+  .sheet figure { grid-column: 7 / 13; grid-row: 1 / 3; position: relative; overflow: clip; margin-left: 0; }
+  .sheet figure img { width: 100%; height: 100%; object-fit: cover; min-height: 86svh; }
+  .sheet figcaption { position: absolute; left: 0; bottom: 0; background: var(--paper); color: var(--ink); padding: 8px 12px; }
 
-  /* Services */
-  .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
-  .service { background: var(--surface); padding: 26px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
-  .service svg { width: 34px; height: 34px; stroke: var(--copper); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-  .service p { color: var(--muted); font-size: .97rem; }
-  .service .from { margin-top: auto; padding-top: 8px; font-weight: 700; font-size: .95rem; }
-  .service .from span { font-family: var(--font-display); font-size: 1.35rem; color: var(--copper); }
-  @media (max-width: 900px) { .services { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 560px) { .services { grid-template-columns: 1fr; } }
+  /* ---------- Pricing: the ticket ---------- */
+  .pricing { padding-top: var(--gap-section); display: flex; flex-direction: column; gap: 48px; }
+  .pricing > header { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; align-items: end; }
+  .pricing > header h2 { grid-column: 1 / 7; font-size: var(--step-head); }
+  .pricing > header p { grid-column: 8 / 13; max-width: 40ch; }
+  .ticket { position: relative; width: min(1040px, 100%); margin-inline: auto; display: grid; grid-template-columns: 7fr 3fr; min-height: 420px; }
+  .ticket-main { background: var(--paper); padding: 40px; display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+  .ticket-main h3 { font-size: var(--step-head); }
+  .ticket-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: end; }
+  .ticket-controls .choice label { white-space: nowrap; padding: 13px 12px; }
+  .ticket-terms { list-style: none; padding: 0; margin-top: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 24px; font-size: 1.0625rem; }
+  .ticket-terms li::before { content: ""; display: inline-block; width: 8px; height: 8px; background: var(--bg); transform: rotate(45deg); margin-right: 10px; vertical-align: 2px; }
+  .ticket-stub { background: var(--paper); border-left: 6px dotted var(--bg); padding: 40px 28px 28px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 18px; text-align: center; }
+  .ticket-stub output { font-family: var(--font-display); font-size: var(--step-display); line-height: 1; display: block; }
+  .ticket-stub output.flip { animation: flip .35s var(--ease-out); }
+  @keyframes flip { from { opacity: 0; transform: translateY(14px); } }
+  .ticket-stub .vat { font-size: var(--step-small); }
+  .ticket .notch { position: absolute; width: 28px; height: 28px; border-radius: 50%; background: var(--bg); left: 70%; transform: translateX(-50%); }
+  .ticket .n-top { top: -14px; } .ticket .n-bot { bottom: -14px; }
 
-  /* Prices */
-  .alt { background: var(--surface); border-block: 1px solid var(--line); }
-  .prices .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 48px; align-items: start; }
-  .table-scroll { overflow-x: auto; min-width: 0; }
-  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
-  th, td { text-align: left; padding: 14px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  th { font-family: var(--font-display); text-transform: uppercase; letter-spacing: .08em; font-size: .9rem; color: var(--muted); }
-  td:last-child, th:last-child { text-align: right; white-space: nowrap; }
-  td small { display: block; color: var(--muted); }
-  .tva { margin-top: 18px; display: flex; flex-direction: column; gap: 6px; font-size: .92rem; color: var(--muted); }
-  .tva b { color: var(--ink); }
-  @media (max-width: 900px) { .prices .wrap { grid-template-columns: 1fr; gap: 24px; } }
+  .rates { width: min(1040px, 100%); margin-inline: auto; display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; row-gap: 24px; }
+  .rates-side { grid-column: 1 / 5; display: flex; flex-direction: column; gap: 18px; }
+  .rates h3 { font-size: var(--step-lead); }
+  .rates .vat-notes { display: flex; flex-direction: column; gap: 10px; }
+  .rates .table-scroll { grid-column: 5 / 13; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 1.0625rem; }
+  th, td { text-align: left; padding: 12px 10px 12px 0; border-bottom: 2px solid var(--ink); vertical-align: top; }
+  thead th { font-weight: 600; }
+  td + td, th + th { text-align: right; white-space: nowrap; }
+  td small { display: block; font-size: var(--step-small); }
 
-  /* Process */
-  .process { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; counter-reset: s; position: relative; }
-  .process::before { content: ""; position: absolute; top: 22px; left: 22px; right: 22px; height: 3px; background: linear-gradient(90deg, var(--copper), color-mix(in srgb, var(--copper) 30%, transparent)); }
-  .process li { position: relative; display: flex; flex-direction: column; gap: 8px; counter-increment: s; }
-  .process li::before { content: counter(s); width: 46px; height: 46px; border-radius: 50%; background: var(--bg); border: 3px solid var(--copper); display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; color: var(--copper); position: relative; }
-  .process p { color: var(--muted); font-size: .96rem; }
-  @media (max-width: 860px) { .process { grid-template-columns: 1fr 1fr; } .process::before { display: none; } }
-  @media (max-width: 480px) { .process { grid-template-columns: 1fr; } }
+  /* ---------- Process: the receipt slip ---------- */
+  .process { margin-top: var(--gap-section); background: var(--night); color: var(--night-ink); padding-block: clamp(80px, 10vw, 160px); }
+  .process .inner { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; align-items: start; }
+  .process .intro { grid-column: 1 / 6; display: flex; flex-direction: column; gap: 24px; position: sticky; top: 48px; }
+  .process .intro h2 { font-size: var(--step-head); }
+  .process .intro p { max-width: 30ch; font-size: var(--step-lead); line-height: 1.4; }
+  .receipt {
+    grid-column: 7 / 12; background: var(--paper); color: var(--ink); padding: 36px 32px 64px; font-size: 1rem;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), 95% 100%, 90% calc(100% - 16px), 85% 100%, 80% calc(100% - 16px), 75% 100%, 70% calc(100% - 16px), 65% 100%, 60% calc(100% - 16px), 55% 100%, 50% calc(100% - 16px), 45% 100%, 40% calc(100% - 16px), 35% 100%, 30% calc(100% - 16px), 25% 100%, 20% calc(100% - 16px), 15% 100%, 10% calc(100% - 16px), 5% 100%, 0 calc(100% - 16px));
+  }
+  .receipt .shop { font-family: var(--font-display); font-size: var(--step-lead); text-align: center; }
+  .receipt .shop + p { text-align: center; font-size: var(--step-small); margin-top: 4px; }
+  .receipt h3 { font-family: var(--font-text); font-weight: 600; font-size: 1.0625rem; letter-spacing: 0; margin-top: 28px; margin-bottom: 6px; }
+  .receipt dl { display: flex; flex-direction: column; gap: 6px; }
+  .receipt .row { display: flex; align-items: baseline; gap: 8px; }
+  .receipt dt { flex: 0 1 auto; }
+  .receipt .row::after { content: none; }
+  .receipt .dots { flex: 1 1 24px; border-bottom: 4px dotted var(--ink); transform: translateY(-4px); min-width: 24px; }
+  .receipt dd { flex: 0 0 auto; font-variant-numeric: tabular-nums; font-weight: 600; }
+  .receipt .total { margin: 28px -32px 0; background: var(--ink); color: var(--paper); min-height: 44px; padding: 10px 32px; display: flex; justify-content: space-between; gap: 12px; font-weight: 600; }
 
-  /* Trust */
-  .trust .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-  .badge { border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; display: flex; flex-direction: column; gap: 4px; background: var(--surface); }
-  .badge strong { font-family: var(--font-display); font-size: 1.5rem; text-transform: uppercase; }
-  .badge span { color: var(--muted); font-size: .92rem; }
-  @media (max-width: 860px) { .trust .wrap { grid-template-columns: 1fr 1fr; } }
+  /* ---------- Zone: the printed list of communes ---------- */
+  .zone { padding-top: var(--gap-section); height: clamp(560px, 70vw, 860px); overflow: clip; display: flex; justify-content: center; }
+  .zone .card { width: min(56vw, 780px); aspect-ratio: 5 / 7; height: max-content; background: var(--paper); padding: 56px; transform: rotate(-1.5deg); text-align: center; display: flex; flex-direction: column; gap: 28px; }
+  .zone h2 { font-size: var(--step-head); }
+  .zone .card > p { max-width: 34ch; margin-inline: auto; }
+  .zone .names { font-family: var(--font-display); font-size: clamp(1.0625rem, .9rem + .6vw, 1.375rem); line-height: 1.7; }
+  .zone .names b { font-weight: 400; background: var(--bg); padding: 0 .3em; }
+  .zone figure img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
 
-  /* Reviews */
-  .reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .review { background: var(--surface); border: 1px dashed var(--line); border-radius: var(--radius); padding: 22px; display: flex; flex-direction: column; gap: 12px; }
-  .stars { color: var(--copper); letter-spacing: 2px; }
-  .review footer { margin-top: auto; font-size: .9rem; color: var(--muted); }
-  .demo-tag { align-self: flex-start; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); border: 1px solid var(--line); border-radius: 3px; padding: 2px 6px; }
-  @media (max-width: 860px) { .reviews { grid-template-columns: 1fr; } }
+  /* ---------- Contact: visit card on the bridge ---------- */
+  .contact { position: relative; min-height: 100svh; }
+  .contact > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; }
+  .contact .sticky-wrap { position: relative; padding-top: 60px; padding-bottom: 60px; min-height: 100svh; }
+  .visit { position: sticky; top: 60px; width: 380px; max-width: 100%; background: var(--paper); border-radius: 0; padding: 32px 32px 0; display: flex; flex-direction: column; gap: 18px; }
+  .visit h2 { font-size: var(--step-lead); }
+  .visit address { font-style: normal; }
+  .hours { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; font-variant-numeric: tabular-nums; }
+  .hours dd { text-align: right; }
+  .visit .tel { font-family: var(--font-display); font-size: var(--step-lead); text-decoration: none; }
+  .visit .btn { margin: 0 -32px; width: calc(100% + 64px); }
+  .contact figcaption { position: absolute; right: var(--margin); bottom: 16px; background: var(--paper); padding: 6px 10px; }
 
-  /* Zone */
-  .zone .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-  .towns { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 18px 0 0; }
-  .towns li { border: 1px solid var(--line); background: var(--surface); padding: 6px 12px; border-radius: 999px; font-size: .92rem; font-weight: 600; }
-  .towns li.hq { border-color: var(--copper); color: var(--copper); }
-  .radar { aspect-ratio: 1; max-width: 100%; width: 380px; justify-self: center; }
-  .radar svg { width: 100%; height: 100%; }
-  @media (max-width: 860px) { .zone .wrap { grid-template-columns: 1fr; } }
+  /* ---------- FAQ beside the church of Auterive ---------- */
+  .faq { background: var(--paper); padding-block: 0 clamp(64px, 7vw, 112px); }
+  .faq .inner { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; }
+  .faq .col { grid-column: 1 / 6; padding-top: clamp(80px, 10vw, 160px); display: flex; flex-direction: column; gap: 28px; }
+  .faq h2 { font-size: var(--step-head); }
+  .facts { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: var(--step-body); }
+  .facts b { font-weight: 600; }
+  .qa { display: flex; flex-direction: column; gap: 28px; }
+  .qa summary { cursor: pointer; list-style: none; font-weight: 600; font-size: var(--step-lead); line-height: 1.3; display: flex; justify-content: space-between; gap: 16px; align-items: baseline; min-height: 44px; }
+  .qa summary::-webkit-details-marker { display: none; }
+  .qa summary::after { content: ""; flex: none; width: 10px; height: 10px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); transition: transform .25s var(--ease-out); margin-right: 4px; }
+  .qa details[open] summary::after { transform: rotate(-135deg); }
+  .qa details p { margin-top: 10px; max-width: 52ch; }
+  .faq .close { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
+  .faq .pics { grid-column: 7 / 13; position: relative; padding-bottom: 0; }
+  .faq .tall { aspect-ratio: 3 / 4; width: 100%; object-fit: cover; }
+  .faq .square { position: absolute; left: -40px; bottom: 40px; width: 36%; aspect-ratio: 1; object-fit: cover; object-position: 50% 20%; background: var(--paper); }
+  .faq .pics figcaption { margin-top: 12px; text-align: right; }
 
-  /* FAQ */
-  .faq { display: flex; flex-direction: column; border-top: 1px solid var(--line); max-width: 820px; }
-  details { border-bottom: 1px solid var(--line); }
-  summary { cursor: pointer; padding: 18px 0; font-weight: 700; font-size: 1.05rem; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
-  summary::-webkit-details-marker { display: none; }
-  summary::after { content: "+"; font-family: var(--font-display); font-size: 1.6rem; line-height: 1; color: var(--copper); }
-  details[open] summary::after { content: "–"; }
-  details p { padding-bottom: 18px; color: var(--muted); max-width: 65ch; }
+  /* ---------- CTA: the reply card ---------- */
+  .reply { background: var(--night); color: var(--night-ink); overflow: clip; display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; align-items: end; padding-top: 64px; }
+  .reply > p { grid-column: 1 / 5; font-size: var(--step-lead); line-height: 1.4; padding-bottom: 64px; align-self: end; }
+  .reply .card { grid-column: 6 / 13; background: var(--paper); color: var(--ink); aspect-ratio: 7 / 5; transform: rotate(2deg) translateY(60px); padding: 48px; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+  .reply .card h2 { font-size: var(--step-head); }
+  .reply .card .big { font-family: var(--font-display); font-size: var(--step-head); line-height: 1; }
 
-  /* Final CTA + footer */
-  .final { background: var(--band); color: var(--band-ink); }
-  .final .wrap { padding-block: 64px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; }
-  .final h2 { color: var(--band-ink); }
-  .final p { opacity: .8; margin-top: 8px; }
-  .final .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
-  .btn-outline { border: 2px solid var(--band-ink); color: var(--band-ink); text-decoration: none; font-weight: 700; padding: 10px 16px; border-radius: var(--radius); }
-  footer.site { background: var(--band); color: var(--band-ink); border-top: 1px solid color-mix(in srgb, var(--band-ink) 15%, transparent); font-size: .88rem; }
-  footer.site .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; opacity: .75; }
-  footer.site a { text-decoration: none; }
+  /* ---------- Footer: the back of the card (curtain) ---------- */
+  .site-footer { background: var(--bg); padding-top: 72px; padding-bottom: 32px; }
+  .back {
+    position: relative; width: min(1180px, 100%); margin-inline: auto; background: var(--paper); padding: 72px 56px 28px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px 64px; min-height: 420px;
+  }
+  .back::before {
+    content: ""; position: absolute; left: 0; right: 0; top: -24px; height: 25px; background: var(--paper);
+    clip-path: polygon(0 100%, 0 50%, 2% 12%, 4.16% 0, 6.3% 12%, 8.33% 50%, 8.33% 100%, 8.33% 50%, 10.4% 12%, 12.5% 0, 14.6% 12%, 16.66% 50%, 18.7% 12%, 20.83% 0, 22.9% 12%, 25% 50%, 27.1% 12%, 29.16% 0, 31.2% 12%, 33.33% 50%, 35.4% 12%, 37.5% 0, 39.6% 12%, 41.66% 50%, 43.7% 12%, 45.83% 0, 47.9% 12%, 50% 50%, 52.1% 12%, 54.16% 0, 56.2% 12%, 58.33% 50%, 60.4% 12%, 62.5% 0, 64.6% 12%, 66.66% 50%, 68.7% 12%, 70.83% 0, 72.9% 12%, 75% 50%, 77.1% 12%, 79.16% 0, 81.2% 12%, 83.33% 50%, 85.4% 12%, 87.5% 0, 89.6% 12%, 91.66% 50%, 93.7% 12%, 95.83% 0, 97.9% 12%, 100% 50%, 100% 100%);
+  }
+  .back .message { display: flex; flex-direction: column; gap: 14px; }
+  .back .message h2 { font-size: var(--step-head); }
+  .back .addr { position: relative; display: flex; flex-direction: column; gap: 12px; padding-top: 120px; font-size: 1.125rem; }
+  .back .addr a { text-decoration: none; }
+  .back .addr a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .stamp { position: absolute; top: 0; right: 0; width: 88px; background: var(--paper); padding: 6px; outline: 6px dotted var(--bg); outline-offset: -2px; transform: rotate(3deg); }
+  .stamp img { aspect-ratio: 3 / 4; object-fit: cover; width: 100%; }
+  .imprint { grid-column: 1 / -1; text-align: center; font-size: var(--step-small); }
+  .credits { max-width: 75ch; margin: 24px auto 0; font-size: var(--step-small); }
 
-  /* Mobile call bar */
+  /* ---------- Mobile call bar ---------- */
   .callbar { display: none; }
+
+  /* ---------- Entrances (only with script, only with motion) ---------- */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-photo img { animation: drift 24s ease-in-out infinite alternate; }
+    @keyframes drift { from { transform: scale(1.02); } to { transform: scale(1.12) translate(-1.5%, -1%); } }
+    html.js .slip > * { animation: rise .7s var(--ease-out) both; }
+    html.js .slip > :nth-child(5) { animation-delay: .08s; } html.js .slip > :nth-child(6) { animation-delay: .16s; }
+    html.js .slip > :nth-child(7) { animation-delay: .24s; } html.js .slip > :nth-child(8) { animation-delay: .32s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(24px); } }
+    html.js [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--ease-out), transform .7s var(--ease-out); transition-delay: calc(var(--i, 0) * 80ms); }
+    html.js [data-reveal].is-in { opacity: 1; transform: none; }
+    html.js .zone .card[data-reveal] { transform: rotate(-1.5deg) translateY(60px); }
+    html.js .zone .card[data-reveal].is-in { transform: rotate(-1.5deg); }
+    html.js .reply .card { transform: rotate(4deg) translateY(110px); transition: transform .9s var(--ease-out) .15s; }
+    html.js .reply > p.is-in + .card { transform: rotate(2deg) translateY(60px); }
+  }
+
+  /* ---------- Tablet ---------- */
+  @media (max-width: 1024px) {
+    .slip { width: min(640px, 76vw); }
+    .sheet h3 { grid-column: 1 / 13; }
+    .rates-side, .rates .table-scroll { grid-column: 1 / 13; }
+  }
+
+  /* ---------- Phone ---------- */
   @media (max-width: 720px) {
-    .callbar { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: var(--band);
-      padding: 10px max(12px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px)); }
-    .callbar a { text-align: center; text-decoration: none; font-weight: 700; padding: 12px; border-radius: var(--radius); }
-    .callbar .c1 { background: var(--copper); color: #fff; }
-    .callbar .c2 { border: 2px solid var(--band-ink); color: var(--band-ink); }
-    body { padding-bottom: 76px; }
+    body { padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
+    .hero-photo { height: 78svh; }
+    .hero-top { grid-template-columns: 1fr auto; padding-top: 20px; }
+    .hero-top nav { display: none; }
+    .hero-top .btn { min-height: 44px; padding: 10px 14px; font-size: 1rem; }
+    .monogram span { display: none; }
+    .slip { width: calc(100% - 24px); margin-top: 72px; padding: 40px 24px; gap: 24px; }
+    .slip .corner { width: 28px; height: 28px; } .slip .tl, .slip .tr { top: -14px; } .slip .tl { left: -14px; } .slip .tr { right: -14px; }
+    .slip .bl, .slip .br { bottom: -14px; } .slip .bl { left: -14px; } .slip .br { right: -14px; }
+    .slip h1 span { transform: none !important; }
+    .choices, .row2 { grid-template-columns: 1fr; }
+
+    .sheet { grid-template-columns: 1fr; grid-template-rows: 52px auto auto; min-height: 70svh; }
+    .sheet:nth-child(2) { top: 52px; } .sheet:nth-child(3) { top: 104px; } .sheet:nth-child(4) { top: 156px; } .sheet:nth-child(5) { top: 208px; }
+    .sheet h3 { grid-column: 1; font-size: 1.375rem; }
+    .sheet figure { grid-column: 1; grid-row: 2; }
+    .sheet figure img { min-height: 0; height: auto; aspect-ratio: 4 / 3; }
+    .sheet figcaption { left: var(--margin); bottom: 12px; }
+    .sheet .text { grid-column: 1; grid-row: 3; padding: 20px var(--margin) 32px; }
+
+    .pricing > header { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+    .ticket { grid-template-columns: 1fr; }
+    .ticket-main { display: contents; }
+    .ticket-main > * { background: var(--paper); padding: 0 20px 24px; margin: 0; }
+    .ticket-main h3 { order: 1; padding-top: 28px; }
+    .ticket-controls { order: 2; }
+    .ticket-stub { order: 3; }
+    .ticket-terms { order: 4; padding-top: 24px; padding-bottom: 28px; }
+    .ticket-controls, .ticket-terms { grid-template-columns: 1fr; }
+    .ticket-stub { border-left: 0; border-top: 6px dotted var(--bg); padding: 64px 20px 24px; }
+    .ticket .notch { left: auto; top: auto; transform: none; }
+    .ticket .notch { display: none; }
+    .ticket-stub output { font-size: 16vw; }
+
+    .process .inner { display: flex; flex-direction: column; gap: 40px; }
+    .process .intro { position: static; }
+    .receipt { width: 100%; padding: 28px 20px 56px; }
+    .receipt .total { margin-inline: -20px; padding-inline: 20px; }
+
+    .zone { height: auto; max-height: 980px; }
+    .zone .card { width: 92%; aspect-ratio: auto; padding: 28px; transform: rotate(-1deg); }
+    html.js .zone .card[data-reveal].is-in { transform: rotate(-1deg); }
+
+    .contact { min-height: 0; display: flex; flex-direction: column; }
+    .contact > img { position: relative; height: 70svh; }
+    .contact .sticky-wrap { min-height: 0; padding-top: 0; margin-top: -80px; padding-bottom: 32px; }
+    .visit { position: relative; top: 0; width: 100%; }
+    .contact figcaption { top: 16px; bottom: auto; }
+
+    .faq .inner { display: flex; flex-direction: column-reverse; }
+    .faq .col { padding-top: 48px; }
+    .faq .pics { padding-bottom: 40px; }
+    .faq .tall { aspect-ratio: 4 / 5; }
+    .faq .square { left: auto; right: 12px; bottom: 24px; width: 38%; }
+    .faq .close .btn { width: 100%; }
+
+    .reply { display: flex; flex-direction: column; align-items: stretch; padding-top: 72px; gap: 32px; }
+    .reply > p { padding-bottom: 0; }
+    .reply .card { width: 90%; align-self: center; aspect-ratio: auto; padding: 32px 22px 56px; transform: rotate(1deg) translateY(40px); }
+    html.js .reply > p.is-in + .card { transform: rotate(1deg) translateY(40px); }
+
+    .back { grid-template-columns: 1fr; padding: 56px 24px 24px; gap: 32px; }
+    .back .addr { padding-top: 0; font-size: 1.0625rem; }
+    .stamp { width: 64px; top: -8px; }
+    .back .message { padding-right: 76px; }
+
+    .callbar {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; background: var(--night);
+      padding: 10px max(12px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));
+    }
+    .callbar .btn { min-height: 52px; }
   }
 </style>
+</head>
+<body>
+<main>
+  <section class="hero" id="accueil">
+    <div class="hero-photo">
+      <img src="assets/soudure-cuivre.jpg" alt="Brasure d'un tube de cuivre au chalumeau, flamme bleue sur le métal" width="1500" height="1000" fetchpriority="high">
+    </div>
+    <header class="hero-top frame">
+      <a class="monogram" href="#accueil" aria-label="Valcourt Plomberie, accueil"><b aria-hidden="true">V</b><span>Valcourt</span></a>
+      <nav aria-label="Navigation principale">
+        <a href="#services">Services</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="#zone">Zone</a>
+        <a href="#questions">Questions</a>
+      </nav>
+      <a class="btn btn-copper num" href="tel:+33500000000">Appeler</a>
+    </header>
 
-<div class="concept" role="note">
-  <div class="wrap"><strong>Projet conceptuel LM Digital</strong><span>Entreprise fictive créée pour démonstration. Coordonnées, tarifs et avis sont des exemples.</span></div>
-</div>
+    <div class="slip">
+      <span class="corner tl" aria-hidden="true"></span><span class="corner tr" aria-hidden="true"></span>
+      <span class="corner bl" aria-hidden="true"></span><span class="corner br" aria-hidden="true"></span>
+      <h1><span>Le plombier</span><span>d'Auterive</span></h1>
+      <p class="lead">Fuite, chauffe-eau, chaudière&nbsp;: on arrive sous 2&nbsp;h, avec le prix annoncé avant de venir.</p>
+      <a class="phone num" href="tel:+33500000000">05 00 00 00 00</a>
+      <ul class="details">
+        <li>7 jours sur 7, de 7 h à 22 h</li>
+        <li>Devis écrit</li>
+        <li>Prix annoncé = prix payé</li>
+      </ul>
+      <p class="concept">Projet conceptuel LM Digital. L'entreprise, l'adresse et le numéro sont fictifs.</p>
 
-<header class="top">
-  <div class="wrap">
-    <a class="logo" href="#accueil" aria-label="Valcourt Plomberie, accueil">
-      <span class="logo-mark" aria-hidden="true">V</span>
-      <span class="logo-text">Valcourt<small>Plomberie · Chauffage</small></span>
-    </a>
-    <nav class="links" aria-label="Navigation principale">
-      <a href="#services">Services</a>
-      <a href="#tarifs">Tarifs</a>
-      <a href="#zone">Zone d'intervention</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-    <a class="call num" href="tel:+33500000000">☎ 05 00 00 00 00</a>
-  </div>
-</header>
-
-<main id="accueil">
-  <section class="hero">
-    <div class="wrap">
-      <div class="hero-copy">
-        <span class="eyebrow">Auterive · Sud toulousain</span>
-        <h1>Fuite, panne de chauffe-eau, chaudière&nbsp;? <em>On arrive sous 2&nbsp;h.</em></h1>
-        <p class="lead">Plombier chauffagiste installé à Auterive depuis 2011. Dépannage, entretien et installation, avec un devis clair avant chaque intervention.</p>
-        <div class="urgent">
-          <span class="pulse" aria-hidden="true"></span>
-          <div>
-            <strong class="num">05 00 00 00 00</strong>
-            <span>Urgences 7j/7, de 7 h à 22 h · Réponse immédiate</span>
-          </div>
-        </div>
-        <ul class="proofs">
-          <li>Devis gratuit et écrit</li>
-          <li>Prix annoncé = prix payé</li>
-          <li>Garantie décennale</li>
-          <li>Artisan certifié RGE</li>
-        </ul>
-      </div>
-
-      <form class="quote" id="quote-form" novalidate aria-labelledby="quote-title">
-        <div class="quote-head">
-          <h3 id="quote-title">Devis gratuit en 1 minute</h3>
-          <div class="steps" aria-hidden="true"><span class="on" id="st1"></span><span id="st2"></span><span id="st3"></span></div>
-        </div>
+      <form class="request" id="demande" novalidate aria-labelledby="demande-titre">
+        <h2 id="demande-titre">Demande d'intervention</h2>
+        <div class="progress" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
 
         <fieldset id="step-1">
           <legend>Quel est votre besoin&nbsp;?</legend>
           <div class="choices">
-            <div class="choice"><input type="radio" name="besoin" id="b-fuite" value="Fuite / dépannage"><label for="b-fuite">Fuite / dépannage<small>Intervention rapide</small></label></div>
-            <div class="choice"><input type="radio" name="besoin" id="b-ce" value="Chauffe-eau"><label for="b-ce">Chauffe-eau<small>Panne ou remplacement</small></label></div>
-            <div class="choice"><input type="radio" name="besoin" id="b-chaud" value="Chaudière"><label for="b-chaud">Chaudière<small>Entretien ou panne</small></label></div>
-            <div class="choice"><input type="radio" name="besoin" id="b-pac" value="Pompe à chaleur"><label for="b-pac">Pompe à chaleur<small>Installation, aides</small></label></div>
-            <div class="choice"><input type="radio" name="besoin" id="b-sdb" value="Salle de bain"><label for="b-sdb">Salle de bain<small>Rénovation</small></label></div>
-            <div class="choice"><input type="radio" name="besoin" id="b-autre" value="Autre"><label for="b-autre">Autre<small>Décrivez-nous</small></label></div>
+            <div class="choice"><input type="radio" name="besoin" id="b-fuite" value="fuite"><label for="b-fuite">Fuite, dépannage<small>Intervention rapide</small></label></div>
+            <div class="choice"><input type="radio" name="besoin" id="b-ce" value="chauffe-eau"><label for="b-ce">Chauffe-eau<small>Panne ou remplacement</small></label></div>
+            <div class="choice"><input type="radio" name="besoin" id="b-chaud" value="chaudiere"><label for="b-chaud">Chaudière<small>Entretien ou panne</small></label></div>
+            <div class="choice"><input type="radio" name="besoin" id="b-pac" value="pac"><label for="b-pac">Pompe à chaleur<small>Installation, aides</small></label></div>
+            <div class="choice"><input type="radio" name="besoin" id="b-deb" value="debouchage"><label for="b-deb">Débouchage<small>Évier, WC, douche</small></label></div>
+            <div class="choice"><input type="radio" name="besoin" id="b-sdb" value="sdb"><label for="b-sdb">Salle de bain<small>Rénovation</small></label></div>
           </div>
         </fieldset>
 
         <fieldset id="step-2" hidden>
           <legend>Quand faut-il intervenir&nbsp;?</legend>
           <div class="choices">
-            <div class="choice"><input type="radio" name="delai" id="d-urg" value="Urgent (aujourd'hui)"><label for="d-urg">Urgent<small>Aujourd'hui</small></label></div>
-            <div class="choice"><input type="radio" name="delai" id="d-sem" value="Cette semaine"><label for="d-sem">Cette semaine</label></div>
-            <div class="choice"><input type="radio" name="delai" id="d-mois" value="Dans le mois"><label for="d-mois">Dans le mois</label></div>
-            <div class="choice"><input type="radio" name="delai" id="d-proj" value="Projet à étudier"><label for="d-proj">Projet à étudier<small>Pas pressé</small></label></div>
+            <div class="choice"><input type="radio" name="delai" id="d-urg" value="urgent"><label for="d-urg">Urgent<small>Aujourd'hui</small></label></div>
+            <div class="choice"><input type="radio" name="delai" id="d-sem" value="semaine"><label for="d-sem">Cette semaine</label></div>
+            <div class="choice"><input type="radio" name="delai" id="d-mois" value="mois"><label for="d-mois">Dans le mois</label></div>
+            <div class="choice"><input type="radio" name="delai" id="d-proj" value="projet"><label for="d-proj">Projet à étudier<small>Pas pressé</small></label></div>
           </div>
           <div class="field"><label for="cp">Code postal</label><input id="cp" name="cp" inputmode="numeric" maxlength="5" placeholder="31190" autocomplete="postal-code"></div>
         </fieldset>
@@ -298,215 +438,272 @@
             <div class="field"><label for="nom">Nom</label><input id="nom" name="nom" autocomplete="name"></div>
             <div class="field"><label for="tel">Téléphone</label><input id="tel" name="tel" type="tel" autocomplete="tel" placeholder="06 12 34 56 78"></div>
           </div>
-          <div class="field"><label for="msg">Précisions (facultatif)</label><textarea id="msg" name="msg" rows="2" placeholder="Ex. : fuite sous l'évier, chauffe-eau 200 L…"></textarea></div>
+          <div class="field"><label for="msg">Précisions (facultatif)</label><textarea id="msg" name="msg" rows="2" placeholder="Fuite sous l'évier, chauffe-eau 200 L…"></textarea></div>
         </fieldset>
 
         <div class="done" id="done" hidden>
-          <div class="tick" aria-hidden="true">✓</div>
-          <h3>Demande bien reçue</h3>
+          <strong>Demande bien reçue</strong>
           <p id="done-text">Nous vous rappelons sous 30 minutes aux heures d'ouverture.</p>
-          <p class="form-note">Version de démonstration : aucune donnée n'a été envoyée.</p>
+          <p class="note">Version de démonstration&nbsp;: aucune donnée n'a été envoyée.</p>
         </div>
 
         <p class="error" id="err" role="alert"></p>
         <div class="actions" id="actions">
-          <button type="button" class="btn btn-ghost" id="back" hidden>← Retour</button>
-          <button type="submit" class="btn btn-primary" id="next">Continuer →</button>
+          <button type="button" class="btn-back" id="back" hidden>Retour</button>
+          <button type="submit" class="btn btn-primary" id="next">Continuer</button>
         </div>
-        <p class="form-note" id="note">Sans engagement. Vos coordonnées servent uniquement à vous rappeler.</p>
+        <p class="note" id="note">Sans engagement. Votre numéro sert uniquement à vous rappeler.</p>
       </form>
     </div>
   </section>
 
-  <section class="block" id="services">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Nos interventions</span>
-        <h2>Du robinet qui goutte à la pompe à chaleur</h2>
-        <p>Un seul artisan pour l'eau et le chauffage de votre maison. Prix de départ indiqués, devis précis sur place.</p>
-      </div>
-      <div class="services">
-        <article class="service">
-          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4c4 6 8 10 8 15a8 8 0 0 1-16 0c0-5 4-9 8-15z"/></svg>
-          <h3>Dépannage fuite</h3>
-          <p>Recherche de fuite, joints, canalisations, WC qui coule. Intervention sous 2 h en urgence.</p>
-          <p class="from">À partir de <span class="num">89 €</span></p>
-        </article>
-        <article class="service">
-          <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="9" y="4" width="14" height="24" rx="3"/><path d="M13 10h6M16 18v4"/></svg>
-          <h3>Chauffe-eau</h3>
-          <p>Réparation ou remplacement : électrique, thermodynamique, solaire. Ancien appareil repris.</p>
-          <p class="from">Remplacement dès <span class="num">690 €</span></p>
-        </article>
-        <article class="service">
-          <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="7" y="5" width="18" height="22" rx="2"/><path d="M12 20c1-2 3-2 4 0s3 2 4 0M12 11h8"/></svg>
-          <h3>Chaudière</h3>
-          <p>Entretien annuel obligatoire, attestation remise, dépannage gaz et fioul toutes marques.</p>
-          <p class="from">Entretien <span class="num">120 €</span></p>
-        </article>
-        <article class="service">
-          <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="9" width="24" height="15" rx="2"/><circle cx="12" cy="16.5" r="4"/><path d="M20 13h4M20 17h4M20 21h4"/></svg>
-          <h3>Pompe à chaleur</h3>
-          <p>Étude, installation air/eau et montage du dossier MaPrimeRénov' et CEE à votre place.</p>
-          <p class="from">Étude <span class="num">offerte</span></p>
-        </article>
-        <article class="service">
-          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 17h22v3a6 6 0 0 1-6 6H11a6 6 0 0 1-6-6v-3zM8 17V8a3 3 0 0 1 6 0"/></svg>
-          <h3>Salle de bain</h3>
-          <p>Rénovation complète, douche à l'italienne, adaptation PMR. Un interlocuteur du début à la fin.</p>
-          <p class="from">Sur <span class="num">devis</span></p>
-        </article>
-        <article class="service">
-          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 16h20M6 16a4 4 0 0 1 4-4h4M26 16a4 4 0 0 0-4-4h-4M10 20v6M22 20v6"/></svg>
-          <h3>Débouchage</h3>
-          <p>Évier, douche, WC, canalisations extérieures. Inspection caméra si nécessaire.</p>
-          <p class="from">À partir de <span class="num">110 €</span></p>
-        </article>
-      </div>
+  <section class="services" id="services" aria-labelledby="services-titre">
+    <h2 id="services-titre" class="frame" data-reveal>Ce qu'on répare</h2>
+    <div class="sheets">
+      <article class="sheet paper">
+        <h3>Fuites et dépannage</h3>
+        <div class="text">
+          <p>Recherche de fuite, joints, robinetterie, canalisations, WC qui coule. En urgence, l'artisan est chez vous sous 2&nbsp;heures, 7&nbsp;jours sur 7.</p>
+          <ul><li>Recherche de fuite sans casse inutile</li><li>Remplacement de joints et de mitigeurs</li><li>Réparation de canalisations cuivre et PER</li></ul>
+          <p class="price num">À partir de 89 € TTC</p>
+        </div>
+        <figure><img src="assets/robinet-goutte.jpg" alt="Goutte d'eau suspendue sous un robinet" width="1125" height="1500" loading="lazy"><figcaption>Robinet qui goutte</figcaption></figure>
+      </article>
+      <article class="sheet night">
+        <h3>Chauffe-eau</h3>
+        <div class="text">
+          <p>Réparation ou remplacement&nbsp;: électrique, thermodynamique ou solaire, de 50 à 300&nbsp;litres. L'ancien appareil est repris et évacué.</p>
+          <ul><li>Diagnostic de panne et réparation</li><li>Remplacement en une matinée</li><li>Thermodynamique éligible aux aides</li></ul>
+          <p class="price num">Remplacement 200 L dès 690 € TTC</p>
+        </div>
+        <figure><img src="assets/chauffe-eau.jpg" alt="Petit chauffe-eau électrique blanc fixé au mur" width="1125" height="1500" loading="lazy"><figcaption>Chauffe-eau électrique mural</figcaption></figure>
+      </article>
+      <article class="sheet paper">
+        <h3>Chaudière</h3>
+        <div class="text">
+          <p>Entretien annuel obligatoire avec attestation pour votre assureur, dépannage gaz et fioul toutes marques, remplacement par une chaudière à condensation.</p>
+          <ul><li>Entretien avec attestation</li><li>Dépannage toutes marques</li><li>Contrat d'entretien annuel</li></ul>
+          <p class="price num">Entretien annuel 120 € TTC</p>
+        </div>
+        <figure><img src="assets/chaudiere.jpg" alt="Chaudière à condensation avec brûleur rouge dans une chaufferie" width="1500" height="1125" loading="lazy"><figcaption>Chaudière à condensation en chaufferie</figcaption></figure>
+      </article>
+      <article class="sheet copper">
+        <h3>Pompe à chaleur</h3>
+        <div class="text">
+          <p>Étude de votre maison, installation air/eau et dossier MaPrimeRénov' et CEE monté à votre place. TVA à 5,5&nbsp;% sur la pose.</p>
+          <ul><li>Visite et calcul des besoins</li><li>Pose et mise en service</li><li>Dossier d'aides monté pour vous</li></ul>
+          <p class="price">Étude offerte</p>
+        </div>
+        <figure><img src="assets/pompe-a-chaleur.jpg" alt="Unité extérieure de pompe à chaleur posée dans un jardin" width="1500" height="1045" loading="lazy"><figcaption>Unité extérieure de pompe à chaleur</figcaption></figure>
+      </article>
+      <article class="sheet night">
+        <h3>Salle de bain</h3>
+        <div class="text">
+          <p>Rénovation complète, douche à l'italienne, adaptation pour les personnes à mobilité réduite. Un seul interlocuteur, de la dépose au dernier joint.</p>
+          <ul><li>Plans et devis détaillé</li><li>Plomberie, carrelage, finitions</li><li>Adaptation PMR</li></ul>
+          <p class="price">Sur devis</p>
+        </div>
+        <figure><img src="assets/salle-de-bain.jpg" alt="Douche à l'italienne carrelée avec niche murale" width="1024" height="683" loading="lazy"><figcaption>Douche à l'italienne carrelée</figcaption></figure>
+      </article>
     </div>
   </section>
 
-  <section class="block alt prices" id="tarifs">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Tarifs transparents</span>
-        <h2>Pas de mauvaise surprise sur la facture</h2>
-        <p>Les prix courants, affichés avant d'intervenir. Vous validez le devis, on intervient, vous payez ce qui était prévu.</p>
-        <div class="tva">
-          <span><b>TVA à 10 %</b> pour les travaux dans un logement de plus de 2 ans.</span>
-          <span><b>TVA à 5,5 %</b> pour les travaux de rénovation énergétique (pompe à chaleur, chauffe-eau thermodynamique).</span>
+  <section class="pricing frame" id="tarifs" aria-labelledby="tarifs-titre">
+    <header>
+      <h2 id="tarifs-titre" data-reveal>Le prix, avant de venir</h2>
+      <p data-reveal style="--i:1">Choisissez votre intervention&nbsp;: le prix TTC s'imprime sur le ticket. C'est celui que vous paierez, déplacement compris.</p>
+    </header>
+
+    <div class="ticket" data-reveal style="--i:2">
+      <span class="notch n-top" aria-hidden="true"></span><span class="notch n-bot" aria-hidden="true"></span>
+      <div class="ticket-main">
+        <h3>Votre intervention</h3>
+        <div class="ticket-controls">
+          <div class="field">
+            <label for="calc-item">Prestation</label>
+            <select id="calc-item">
+              <option value="fuite">Recherche et réparation de fuite</option>
+              <option value="debouchage">Débouchage évier ou WC</option>
+              <option value="chaudiere">Entretien annuel chaudière gaz</option>
+              <option value="chauffe-eau">Remplacement chauffe-eau 200 L</option>
+              <option value="diag">Déplacement et diagnostic seul</option>
+              <option value="pac">Étude pompe à chaleur</option>
+            </select>
+          </div>
+          <fieldset>
+            <legend class="field-legend" style="font-size:var(--step-small);margin-bottom:4px">Moment</legend>
+            <div class="choices">
+              <div class="choice"><input type="radio" name="moment" id="m-jour" value="0" checked><label for="m-jour">En semaine</label></div>
+              <div class="choice"><input type="radio" name="moment" id="m-soir" value="40"><label for="m-soir">Soir, week-end</label></div>
+            </div>
+          </fieldset>
         </div>
+        <ul class="ticket-terms" id="calc-terms">
+          <li>Déplacement de 49 € inclus</li>
+          <li>Devis écrit signé avant travaux</li>
+          <li id="calc-vat-line">TVA à 10 % incluse</li>
+          <li>Pièces garanties 2 ans</li>
+        </ul>
       </div>
-      <div class="table-scroll">
+      <div class="ticket-stub">
+        <output id="calc-price" for="calc-item m-jour m-soir" class="num" aria-live="polite">89 €</output>
+        <span class="vat" id="calc-vat">à partir de, TTC, TVA à 10 % incluse</span>
+        <a class="btn btn-block" id="calc-book" href="#demande">Demander ce prix</a>
+      </div>
+    </div>
+
+    <div class="rates">
+      <div class="rates-side">
+      <h3 data-reveal>Tous les tarifs</h3>
+      <div class="vat-notes" data-reveal style="--i:1">
+        <p>La TVA est à 10&nbsp;% pour les travaux dans un logement de plus de 2&nbsp;ans, et à 5,5&nbsp;% pour la rénovation énergétique (pompe à chaleur, chauffe-eau thermodynamique).</p>
+        <p>Le déplacement à 49&nbsp;€ est déduit de la facture dès que des travaux sont réalisés.</p>
+      </div>
+      </div>
+      <div class="table-scroll" data-reveal style="--i:2">
         <table>
-          <thead><tr><th scope="col">Prestation</th><th scope="col">Prix TTC</th></tr></thead>
+          <thead><tr><th scope="col">Prestation</th><th scope="col">En semaine</th><th scope="col">Soir, week-end</th></tr></thead>
           <tbody>
-            <tr><td>Déplacement + diagnostic<small>Zone d'intervention, déduit si travaux</small></td><td>49 €</td></tr>
-            <tr><td>Recherche et réparation de fuite simple<small>Main-d'œuvre 1 h incluse</small></td><td>dès 89 €</td></tr>
-            <tr><td>Débouchage évier ou WC<small>Furet manuel ou électrique</small></td><td>dès 110 €</td></tr>
-            <tr><td>Entretien annuel chaudière gaz<small>Attestation d'entretien remise</small></td><td>120 €</td></tr>
-            <tr><td>Remplacement chauffe-eau 200 L<small>Fourniture, pose, évacuation de l'ancien</small></td><td>dès 690 €</td></tr>
-            <tr><td>Majoration urgence soir et week-end<small>Annoncée avant le déplacement</small></td><td>+ 40 €</td></tr>
+            <tr><td>Déplacement et diagnostic<small>Déduit si travaux</small></td><td>49 €</td><td>89 €</td></tr>
+            <tr><td>Recherche et réparation de fuite<small>1 h de main-d'œuvre incluse</small></td><td>dès 89 €</td><td>dès 129 €</td></tr>
+            <tr><td>Débouchage évier ou WC<small>Furet manuel ou électrique</small></td><td>dès 110 €</td><td>dès 150 €</td></tr>
+            <tr><td>Entretien annuel chaudière gaz<small>Attestation remise</small></td><td>120 €</td><td>sur rendez-vous</td></tr>
+            <tr><td>Remplacement chauffe-eau 200 L<small>Fourniture, pose, reprise de l'ancien</small></td><td>dès 690 €</td><td>dès 730 €</td></tr>
+            <tr><td>Étude pompe à chaleur<small>Visite et chiffrage des aides</small></td><td>offerte</td><td>sur rendez-vous</td></tr>
           </tbody>
         </table>
       </div>
     </div>
   </section>
 
-  <section class="block">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Comment ça se passe</span>
-        <h2>De votre appel à la facture</h2>
+  <section class="process on-dark" aria-labelledby="process-titre">
+    <div class="inner frame">
+      <div class="intro">
+        <h2 id="process-titre" data-reveal>De l'appel à la facture</h2>
+        <p data-reveal style="--i:1">Chaque intervention suit le même ticket. La dernière ligne est toujours la même&nbsp;: la facture égale le devis.</p>
       </div>
-      <ol class="process">
-        <li><h3>Vous appelez</h3><p>Ou vous remplissez le formulaire. On vous rappelle sous 30 minutes.</p></li>
-        <li><h3>Diagnostic</h3><p>Sur place, on identifie la cause et on vous explique simplement.</p></li>
-        <li><h3>Devis écrit</h3><p>Prix fixe annoncé avant toute intervention. Vous décidez.</p></li>
-        <li><h3>Travaux garantis</h3><p>Chantier propre, facture détaillée, garanties pièces et main-d'œuvre.</p></li>
-      </ol>
-    </div>
-  </section>
-
-  <section class="block alt trust">
-    <div class="wrap">
-      <div class="badge"><strong class="num">2011</strong><span>Installé à Auterive</span></div>
-      <div class="badge"><strong>RGE</strong><span>Éligible MaPrimeRénov' et CEE</span></div>
-      <div class="badge"><strong>Décennale</strong><span>Assurance travaux 10 ans</span></div>
-      <div class="badge"><strong class="num">7j/7</strong><span>Urgences de 7 h à 22 h</span></div>
-    </div>
-  </section>
-
-  <section class="block" id="avis">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Avis clients</span>
-        <h2>Ce qu'en disent les voisins</h2>
-        <p>Emplacement prévu pour les avis Google réels du client.</p>
-      </div>
-      <div class="reviews">
-        <article class="review"><span class="demo-tag">Exemple</span><div class="stars" aria-label="5 sur 5">★★★★★</div><p>« Fuite sous l'évier un dimanche soir. Arrivé en 1 h 30, prix annoncé au téléphone respecté. »</p><footer>Avis Google · Auterive</footer></article>
-        <article class="review"><span class="demo-tag">Exemple</span><div class="stars" aria-label="5 sur 5">★★★★★</div><p>« Remplacement du chauffe-eau en une matinée, ancien appareil emporté, chantier propre. »</p><footer>Avis Google · Cintegabelle</footer></article>
-        <article class="review"><span class="demo-tag">Exemple</span><div class="stars" aria-label="5 sur 5">★★★★★</div><p>« Ils ont monté tout le dossier MaPrimeRénov' pour notre pompe à chaleur. Rien à gérer de notre côté. »</p><footer>Avis Google · Venerque</footer></article>
+      <div class="receipt" data-reveal style="--i:2" aria-label="Déroulé d'une intervention">
+        <p class="shop">Valcourt Plomberie</p>
+        <p>Auterive · intervention type</p>
+        <h3>Au téléphone</h3>
+        <dl>
+          <div class="row"><dt>Vous décrivez la panne</dt><span class="dots" aria-hidden="true"></span><dd>2 min</dd></div>
+          <div class="row"><dt>On vous annonce le prix</dt><span class="dots" aria-hidden="true"></span><dd>1 min</dd></div>
+        </dl>
+        <h3>Chez vous</h3>
+        <dl>
+          <div class="row"><dt>Arrivée en urgence</dt><span class="dots" aria-hidden="true"></span><dd>sous 2 h</dd></div>
+          <div class="row"><dt>Diagnostic expliqué</dt><span class="dots" aria-hidden="true"></span><dd>15 min</dd></div>
+          <div class="row"><dt>Devis écrit, signé</dt><span class="dots" aria-hidden="true"></span><dd>5 min</dd></div>
+        </dl>
+        <h3>Après</h3>
+        <dl>
+          <div class="row"><dt>Travaux, chantier nettoyé</dt><span class="dots" aria-hidden="true"></span><dd>selon devis</dd></div>
+          <div class="row"><dt>Écart entre devis et facture</dt><span class="dots" aria-hidden="true"></span><dd>0,00 €</dd></div>
+        </dl>
+        <p class="total"><span>Votre panne réparée</span><span class="num">le jour même</span></p>
       </div>
     </div>
   </section>
 
-  <section class="block alt zone" id="zone">
-    <div class="wrap">
-      <div>
-        <span class="eyebrow">Zone d'intervention</span>
-        <h2>À 25 minutes autour d'Auterive</h2>
-        <p style="margin-top:12px;color:var(--muted)">Déplacement à 49 € dans toute la zone, déduit du montant si des travaux sont réalisés.</p>
-        <ul class="towns">
-          <li class="hq">Auterive</li><li>Cintegabelle</li><li>Venerque</li><li>Miremont</li><li>Grépiac</li><li>Labarthe-sur-Lèze</li><li>Lagardelle-sur-Lèze</li><li>Mauressac</li><li>Puydaniel</li><li>Le Vernet</li>
+  <section class="zone frame" id="zone" aria-labelledby="zone-titre">
+    <div class="card" data-reveal>
+      <h2 id="zone-titre">Dix communes</h2>
+      <p>À 25 minutes au plus de l'atelier d'Auterive, avec un déplacement au même prix partout.</p>
+      <p class="names"><b>Auterive</b> · Cintegabelle · Venerque · Miremont · Grépiac · Labarthe-sur-Lèze · Lagardelle-sur-Lèze · Mauressac · Puydaniel · Le&nbsp;Vernet</p>
+      <figure><img src="assets/gravure-plombier-1905.jpg" alt="Gravure ancienne de raccords de plomb et de gouttières, extraite d'un manuel de plomberie de 1905" width="1143" height="1500" loading="lazy" style="object-position:50% 30%"><figcaption>Raccords de plomberie, manuel de 1905</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="contact" aria-labelledby="atelier-titre">
+    <img src="assets/pont-auterive.jpg" alt="Le pont de briques sur l'Ariège à Auterive, sous un ciel bleu" width="1500" height="1000" loading="lazy">
+    <div class="sticky-wrap frame">
+      <div class="visit" data-reveal>
+        <h2 id="atelier-titre">L'atelier d'Auterive</h2>
+        <address>Adresse de l'atelier (exemple)<br>31190 Auterive</address>
+        <dl class="hours">
+          <dt>Lundi au vendredi</dt><dd>7 h – 19 h</dd>
+          <dt>Samedi</dt><dd>8 h – 12 h</dd>
+          <dt>Urgences, 7 j/7</dt><dd>7 h – 22 h</dd>
+        </dl>
+        <a class="tel num" href="tel:+33500000000">05 00 00 00 00</a>
+        <a class="btn" href="tel:+33500000000">Appeler l'atelier</a>
+      </div>
+    </div>
+    <figcaption>Le pont sur l'Ariège, Auterive</figcaption>
+  </section>
+
+  <section class="faq" id="questions" aria-labelledby="faq-titre">
+    <div class="inner frame">
+      <div class="col">
+        <h2 id="faq-titre" data-reveal>Avant d'appeler</h2>
+        <ul class="facts">
+          <li><b>Déplacement</b> 49 €, déduit si travaux</li>
+          <li><b>Urgences</b> 7 jours sur 7, de 7 h à 22 h</li>
+          <li><b>Paiement</b> carte, chèque ou virement</li>
         </ul>
+        <div class="qa">
+          <details><summary>Le déplacement est-il payant&nbsp;?</summary><p>Oui, 49&nbsp;€ dans toute la zone. Ce montant est déduit de la facture si vous acceptez les travaux.</p></details>
+          <details><summary>Intervenez-vous le week-end&nbsp;?</summary><p>Oui, pour les urgences (fuite, plus d'eau chaude, plus de chauffage), 7&nbsp;jours sur 7 de 7&nbsp;h à 22&nbsp;h. Une majoration de 40&nbsp;€ s'applique le soir et le week-end, toujours annoncée avant de venir.</p></details>
+          <details><summary>L'entretien de chaudière est-il obligatoire&nbsp;?</summary><p>Oui, une fois par an pour les chaudières gaz, fioul et bois de 4 à 400&nbsp;kW. Nous vous remettons l'attestation demandée par votre assureur.</p></details>
+          <details><summary>Quelles aides pour une pompe à chaleur&nbsp;?</summary><p>MaPrimeRénov' et les primes CEE, selon vos revenus. L'artisan étant certifié RGE, nous montons le dossier avec vous et la TVA est à 5,5&nbsp;%.</p></details>
+          <details><summary>Et si le chantier coûte plus que prévu&nbsp;?</summary><p>Il ne coûte pas plus. Si nous découvrons un autre problème, nous nous arrêtons, nous vous l'expliquons et vous signez un second devis avant toute suite.</p></details>
+          <details><summary>Comment se passe le paiement&nbsp;?</summary><p>À la fin de l'intervention, par carte, chèque ou virement. Pour les gros chantiers, un acompte de 30&nbsp;% est demandé à la signature du devis.</p></details>
+        </div>
+        <div class="close">
+          <a class="btn" href="#demande">Demander un devis</a>
+          <a class="link" href="#tarifs">Voir tous les tarifs</a>
+        </div>
       </div>
-      <div class="radar" aria-hidden="true">
-        <svg viewBox="0 0 200 200">
-          <circle cx="100" cy="100" r="92" fill="none" stroke="var(--line)" stroke-width="1.5"/>
-          <circle cx="100" cy="100" r="62" fill="none" stroke="var(--line)" stroke-width="1.5"/>
-          <circle cx="100" cy="100" r="32" fill="color-mix(in srgb, var(--copper) 14%, transparent)" stroke="var(--copper)" stroke-width="1.5"/>
-          <circle cx="100" cy="100" r="6" fill="var(--copper)"/>
-          <text x="100" y="122" text-anchor="middle" font-size="9" font-weight="700" fill="var(--ink)" font-family="sans-serif">AUTERIVE</text>
-          <circle cx="120" cy="150" r="3.5" fill="var(--ink)"/><text x="126" y="153" font-size="7.5" fill="var(--muted)" font-family="sans-serif">Cintegabelle</text>
-          <circle cx="112" cy="46" r="3.5" fill="var(--ink)"/><text x="118" y="49" font-size="7.5" fill="var(--muted)" font-family="sans-serif">Venerque</text>
-          <circle cx="62" cy="58" r="3.5" fill="var(--ink)"/><text x="16" y="52" font-size="7.5" fill="var(--muted)" font-family="sans-serif">Labarthe</text>
-          <circle cx="70" cy="128" r="3.5" fill="var(--ink)"/><text x="24" y="140" font-size="7.5" fill="var(--muted)" font-family="sans-serif">Mauressac</text>
-          <circle cx="150" cy="88" r="3.5" fill="var(--ink)"/><text x="140" y="80" font-size="7.5" fill="var(--muted)" font-family="sans-serif">Grépiac</text>
-          <text x="100" y="22" text-anchor="middle" font-size="7" fill="var(--muted)" font-family="sans-serif">≈ 25 min</text>
-        </svg>
-      </div>
+      <figure class="pics">
+        <img class="tall" src="assets/eglise-auterive.jpg" alt="Clocher de briques de l'église Saint-Paul d'Auterive" width="1125" height="1500" loading="lazy">
+        <img class="square" src="assets/outils-plombier-18e.jpg" alt="Planche de l'Encyclopédie montrant des outils anciens de plombier" width="1017" height="1500" loading="lazy">
+        <figcaption>L'église Saint-Paul d'Auterive, et des outils de plombier dans l'Encyclopédie de Diderot</figcaption>
+      </figure>
     </div>
   </section>
 
-  <section class="block" id="faq">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Questions fréquentes</span>
-        <h2>Avant de nous appeler</h2>
-      </div>
-      <div class="faq">
-        <details><summary>Le déplacement est-il payant&nbsp;?</summary><p>Oui, 49 € dans toute la zone. Ce montant est déduit de la facture si vous acceptez les travaux.</p></details>
-        <details><summary>Intervenez-vous le week-end&nbsp;?</summary><p>Oui, pour les urgences (fuite, plus d'eau chaude, plus de chauffage), 7 jours sur 7 de 7 h à 22 h. Une majoration de 40 € s'applique le soir et le week-end, toujours annoncée avant de venir.</p></details>
-        <details><summary>L'entretien de chaudière est-il obligatoire&nbsp;?</summary><p>Oui, une fois par an pour les chaudières gaz, fioul et bois de 4 à 400 kW. Nous vous remettons l'attestation demandée par votre assureur.</p></details>
-        <details><summary>Quelles aides pour une pompe à chaleur&nbsp;?</summary><p>MaPrimeRénov' et les primes CEE, selon vos revenus. Comme nous sommes certifiés RGE, nous montons le dossier avec vous et la TVA est à 5,5 %.</p></details>
-        <details><summary>Comment se passe le paiement&nbsp;?</summary><p>À la fin de l'intervention, par carte, chèque ou virement. Pour les gros chantiers, un acompte de 30 % est demandé à la signature du devis.</p></details>
-      </div>
+  <section class="reply frame on-dark" aria-labelledby="reply-titre">
+    <p data-reveal>Une fuite ne s'arrange jamais toute seule. Un appel, et vous savez tout de suite si l'on peut passer aujourd'hui, et à quel prix.</p>
+    <div class="card">
+      <h2 id="reply-titre">De l'eau partout&nbsp;?</h2>
+      <p>Coupez l'arrivée d'eau au compteur, puis appelez l'atelier.</p>
+      <p class="big num">05 00 00 00 00</p>
+      <a class="btn btn-block" href="tel:+33500000000">Appeler maintenant</a>
     </div>
   </section>
 </main>
 
-<section class="final">
-  <div class="wrap">
-    <div>
-      <h2>Un problème d'eau ou de chauffage&nbsp;?</h2>
-      <p>Appelez, on vous dit tout de suite si on peut venir aujourd'hui.</p>
+<footer class="site-footer frame">
+  <div class="back">
+    <div class="message">
+      <h2>À bientôt chez vous</h2>
+      <p>Valcourt Plomberie répare, entretient et installe l'eau et le chauffage des maisons du sud toulousain, depuis l'atelier d'Auterive.</p>
+      <p>Une question qui n'attend pas&nbsp;? Le téléphone répond de 7&nbsp;h à 22&nbsp;h.</p>
     </div>
-    <div class="cta-row">
-      <a class="call num" href="tel:+33500000000">☎ 05 00 00 00 00</a>
-      <a class="btn-outline" href="#quote-form">Demander un devis</a>
+    <div class="addr">
+      <figure class="stamp"><img src="assets/gravure-plombier-1905.jpg" alt="" width="1143" height="1500" loading="lazy" style="object-position:50% 70%"></figure>
+      <a class="num" href="tel:+33500000000">05 00 00 00 00</a>
+      <a href="mailto:contact@valcourt-exemple.fr">contact@valcourt-exemple.fr</a>
+      <a href="#atelier-titre">31190 Auterive</a>
+      <a href="https://lmdigital.fr">Site conçu par LM Digital</a>
     </div>
+    <p class="imprint">Projet conceptuel LM Digital · Valcourt Plomberie est une entreprise fictive · Mentions légales · Confidentialité</p>
   </div>
-</section>
-
-<footer class="site">
-  <div class="wrap">
-    <span>© Valcourt Plomberie · Auterive (31) · Entreprise fictive</span>
-    <span><a href="#accueil">Mentions légales</a> · <a href="#accueil">Confidentialité</a> · Site réalisé par LM Digital</span>
-  </div>
+  <p class="credits">Images&nbsp;: <a href="https://commons.wikimedia.org/w/index.php?curid=50017388">«&nbsp;Propane torch soldering copper pipe&nbsp;»</a> par neffk, <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>&nbsp;; <a href="https://commons.wikimedia.org/w/index.php?curid=95592994">«&nbsp;Ariston Water heater&nbsp;»</a> par BOO109, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>&nbsp;; <a href="https://commons.wikimedia.org/wiki/File:Viessmann_Vertomat_Condensing_Boiler.JPG">«&nbsp;Viessmann Vertomat Condensing Boiler&nbsp;»</a> par Dunnd74, <a href="https://creativecommons.org/licenses/by/2.5">CC BY 2.5</a>&nbsp;; <a href="https://commons.wikimedia.org/wiki/File:Carrier_Outdoor_Split_Air_Conditioner_Heat_Pump_System_(55005181522).jpg">«&nbsp;Carrier Outdoor Split Air Conditioner Heat Pump System&nbsp;»</a> par Tony Webster, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>&nbsp;; <a href="https://www.rawpixel.com/image/6019082/photo-image-public-domain-house-room">«&nbsp;Modern bathroom, house interior&nbsp;»</a>, <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>&nbsp;; <a href="https://commons.wikimedia.org/wiki/File:Pont,_Auterive_(Haute-Garonne).jpg">«&nbsp;Pont, Auterive (Haute-Garonne)&nbsp;»</a> par Lucas Destrem, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>&nbsp;; <a href="https://commons.wikimedia.org/w/index.php?curid=4240040">«&nbsp;Église Auterive (31)&nbsp;»</a> par Gaël Le Mab, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>&nbsp;; <a href="https://commons.wikimedia.org/wiki/File:Practical_plumbers%27_work,_with_numerous_engravings_and_diagrams;_(1905)_(14762349024).jpg">«&nbsp;Practical plumbers' work&nbsp;» (1905)</a>, P. N. Hasluck, sans restriction connue&nbsp;; <a href="https://commons.wikimedia.org/w/index.php?curid=102636100">«&nbsp;Outils anciens de plombier au XVIIIe siècle&nbsp;»</a>, Encyclopédie de Diderot et d'Alembert, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>&nbsp;; <a href="https://commons.wikimedia.org/wiki/File:Dripping_faucet_1.jpg">«&nbsp;Dripping faucet 1&nbsp;»</a> par Dschwen, <a href="https://creativecommons.org/licenses/by-sa/2.5">CC BY-SA 2.5</a>. Via Wikimedia Commons sauf mention contraire.</p>
 </footer>
 
 <div class="callbar">
-  <a class="c1" href="tel:+33500000000">☎ Appeler</a>
-  <a class="c2" href="#quote-form">Devis gratuit</a>
+  <a class="btn btn-copper" href="tel:+33500000000">Appeler</a>
+  <a class="btn" style="background:var(--paper);color:var(--ink)" href="#demande">Devis gratuit</a>
 </div>
 
 <script>
 (function () {
-  var form = document.getElementById('quote-form');
-  var steps = [document.getElementById('step-1'), document.getElementById('step-2'), document.getElementById('step-3')];
-  var bars = [document.getElementById('st1'), document.getElementById('st2'), document.getElementById('st3')];
+  /* Quote form: three steps on the slip */
+  var form = document.getElementById('demande');
+  var steps = [1, 2, 3].map(function (n) { return document.getElementById('step-' + n); });
+  var bars = form.querySelectorAll('.progress span');
   var next = document.getElementById('next');
   var back = document.getElementById('back');
   var err = document.getElementById('err');
@@ -517,20 +714,18 @@
     steps.forEach(function (s, k) { s.hidden = k !== i; });
     bars.forEach(function (b, k) { b.classList.toggle('on', k <= i); });
     back.hidden = i === 0;
-    next.textContent = i === steps.length - 1 ? 'Être rappelé' : 'Continuer →';
+    next.textContent = i === steps.length - 1 ? 'Être rappelé' : 'Continuer';
     err.textContent = '';
   }
-
   function checked(name) {
     var el = form.querySelector('input[name="' + name + '"]:checked');
     return el ? el.value : '';
   }
-
   function validate(i) {
-    if (i === 0 && !checked('besoin')) return 'Choisissez le type d\'intervention.';
+    if (i === 0 && !checked('besoin')) return "Choisissez le type d'intervention.";
     if (i === 1) {
       if (!checked('delai')) return 'Indiquez quand intervenir.';
-      if (!/^\d{5}$/.test(form.cp.value.trim())) return 'Entrez un code postal à 5 chiffres.';
+      if (!/^\d{5}$/.test(form.cp.value.trim())) return 'Entrez un code postal à 5 chiffres, par exemple 31190.';
     }
     if (i === 2) {
       if (!form.nom.value.trim()) return 'Indiquez votre nom.';
@@ -538,26 +733,76 @@
     }
     return '';
   }
-
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var problem = validate(current);
     if (problem) { err.textContent = problem; return; }
-    if (current < steps.length - 1) { show(current + 1); return; }
+    if (current < steps.length - 1) { show(current + 1); steps[current].querySelector('input').focus(); return; }
     steps.forEach(function (s) { s.hidden = true; });
     document.getElementById('actions').hidden = true;
     document.getElementById('note').hidden = true;
+    form.querySelector('.progress').hidden = true;
     err.textContent = '';
-    var urgent = checked('delai').indexOf('Urgent') === 0;
-    document.getElementById('done-text').textContent = urgent
+    document.getElementById('done-text').textContent = checked('delai') === 'urgent'
       ? 'Demande urgente : nous vous rappelons dans les 15 minutes.'
-      : 'Nous vous rappelons sous 30 minutes aux heures d\'ouverture.';
+      : "Nous vous rappelons sous 30 minutes aux heures d'ouverture.";
     document.getElementById('done').hidden = false;
   });
-
   back.addEventListener('click', function () { if (current > 0) show(current - 1); });
   show(0);
+
+  /* The ticket: the fixed price prints as you choose */
+  var prices = {
+    fuite:        { base: 89,  from: true,  vat: '10', evening: true },
+    debouchage:   { base: 110, from: true,  vat: '10', evening: true },
+    chaudiere:    { base: 120, from: false, vat: '10', evening: false },
+    'chauffe-eau':{ base: 690, from: true,  vat: '5,5', evening: true },
+    diag:         { base: 49,  from: false, vat: '10', evening: true },
+    pac:          { base: 0,   from: false, vat: '5,5', evening: false }
+  };
+  var item = document.getElementById('calc-item');
+  var out = document.getElementById('calc-price');
+  var vatEl = document.getElementById('calc-vat');
+  var vatLine = document.getElementById('calc-vat-line');
+  var evening = document.getElementById('m-soir');
+  var day = document.getElementById('m-jour');
+
+  function render() {
+    var p = prices[item.value];
+    evening.disabled = !p.evening;
+    if (!p.evening && evening.checked) day.checked = true;
+    var extra = evening.checked ? 40 : 0;
+    var total = p.base + extra;
+    out.textContent = total === 0 ? 'Offert' : total + ' €';
+    vatEl.textContent = total === 0 ? 'visite et chiffrage, sans engagement'
+      : (p.from ? 'à partir de, ' : 'prix fixe, ') + 'TTC, TVA à ' + p.vat + ' % incluse';
+    vatLine.textContent = 'TVA à ' + p.vat + ' % incluse';
+    out.classList.remove('flip'); void out.offsetWidth; out.classList.add('flip');
+  }
+  item.addEventListener('change', render);
+  [day, evening].forEach(function (r) { r.addEventListener('change', render); });
+  render();
+
+  /* Booking from the ticket pre-selects the matching need on the slip */
+  var map = { fuite: 'b-fuite', debouchage: 'b-deb', chaudiere: 'b-chaud', 'chauffe-eau': 'b-ce', diag: 'b-fuite', pac: 'b-pac' };
+  document.getElementById('calc-book').addEventListener('click', function () {
+    var r = document.getElementById(map[item.value]);
+    if (r && current === 0) r.checked = true;
+  });
+
+  /* Reveal once on entry; never leaves content hidden */
+  var targets = document.querySelectorAll('[data-reveal]');
+  if (!('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('is-in'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
+  targets.forEach(function (el) { io.observe(el); });
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      targets.forEach(function (el) { var r = el.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0) el.classList.add('is-in'); });
+    }, 2500);
+  });
 })();
 </script>
-<!-- ARTIFACT-END -->
+</body>
 </html>
